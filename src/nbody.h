@@ -12,10 +12,10 @@ typedef struct World {
 
 extern World world;
 
-void    add_random_body();
-void    add_random_body_fn(Vector2(*positionFunc)());
+void    add_random_body(void);
+void    add_random_body_fn(Vector2(*positionFunc)(void));
 
-Color   get_random_color();
+Color   get_random_color(void);
 
-Vector2 get_random_circlepos();
-Vector2 get_random_worldpos();
+Vector2 get_random_circlepos(void);
+Vector2 get_random_worldpos(void);

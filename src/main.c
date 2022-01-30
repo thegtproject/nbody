@@ -16,10 +16,10 @@ static Color clear_color = { 25, 25, 25, 255 };
 static bool  paused      = true;
 static bool  showhelp    = true;
 
-void update();
-void text();
+void update(void);
+void text(void);
 
-void draw()
+void draw(void)
 {
     BeginDrawing();
     BeginMode2D(world.camera);
@@ -34,7 +34,7 @@ void draw()
     EndDrawing();
 }
 
-void setup()
+void setup(void)
 {
     world.size.x = 1000;
     world.size.y = 1000;
@@ -53,7 +53,7 @@ void setup()
     }
 }
 
-void randomize_state()
+void randomize_state(void)
 {
     world.vec.count = 0;
 
@@ -67,7 +67,7 @@ void randomize_state()
         case 5: bodyCount = GetRandomValue(300, 1000); break;
     }
 
-    Vector2 (*spawnPositionFn)() = NULL;
+    Vector2 (*spawnPositionFn)(void) = NULL;
 
     switch (GetRandomValue(1, 2)) {
         case 1: spawnPositionFn = get_random_worldpos; break;
@@ -79,7 +79,7 @@ void randomize_state()
     }
 }
 
-void input()
+void input(void)
 {
     if (IsKeyDown(KEY_ONE)) remove_last_body();
     if (IsKeyDown(KEY_TWO)) add_random_body();
@@ -122,7 +122,7 @@ int main(int argc, char const *argv[])
     return 0;
 }
 
-void text()
+void text(void)
 {
     DrawText(TextFormat("FPS: %i, Count: %i, Capacity: %i", GetFPS(), world.vec.count, world.vec.capacity), 4, 0, 16, WHITE);
     DrawText("Space - pause, H - hide help, R - randomize", 4, 16, 16, WHITE);
@@ -133,7 +133,7 @@ void text()
     DrawText("1 - remove last body, 2 - add random body", 4, 96, 16, WHITE);
 }
 
-void update()
+void update(void)
 {
     if (!paused) {
         UpdateBodies(&world.vec);
