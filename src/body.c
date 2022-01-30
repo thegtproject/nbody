@@ -5,6 +5,11 @@
 
 #include <stdlib.h>
 
+static float GravityConstant = 0.4;
+
+static void    ApplyForce(Body* b, Vector2 force);
+static Vector2 Attract(Body* b1, Body* b2);
+
 void UpdateBodies(BodyVector* vec)
 {
     // update attraction force on all bodies

@@ -8,19 +8,19 @@
 
 #include <stdio.h>
 
-const int initialBodyCount = 128;
+static const int initialBodyCount = 128;
 
-const int screenWidth  = 1200;
-const int screenHeight = 650;
+static const int screenWidth  = 1200;
+static const int screenHeight = 650;
 
 static Color clear_color = { 25, 25, 25, 255 };
 static bool  paused      = true;
 static bool  showhelp    = true;
 
-void update(void);
-void text(void);
+static void update(void);
+static void text(void);
 
-void draw(void)
+static void draw(void)
 {
     BeginDrawing();
     BeginMode2D(world.camera);
@@ -35,7 +35,7 @@ void draw(void)
     EndDrawing();
 }
 
-void setup(void)
+static void setup(void)
 {
     world.size.x = 1000;
     world.size.y = 1000;
@@ -54,7 +54,7 @@ void setup(void)
     }
 }
 
-void randomize_state(void)
+static void randomize_state(void)
 {
     world.vec.count = 0;
 
@@ -80,7 +80,7 @@ void randomize_state(void)
     }
 }
 
-void input(void)
+static void input(void)
 {
     if (IsKeyDown(KEY_ONE)) remove_last_body();
     if (IsKeyDown(KEY_TWO)) add_random_body();

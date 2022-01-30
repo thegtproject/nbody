@@ -17,10 +17,6 @@ typedef struct BodyVector {
     Body* bodies;
 } BodyVector;
 
-static float GravityConstant = 0.4;
-
-void    AddBody(BodyVector* vec, Body p);
-void    InitBodyVector(BodyVector* vec, int capacity);
-void    UpdateBodies(BodyVector* vec);
-void    ApplyForce(Body* b, Vector2 force);
-Vector2 Attract(Body* b1, Body* b2);
+extern void AddBody(BodyVector* vec, Body p);
+extern void InitBodyVector(BodyVector* vec, int capacity);
+extern void UpdateBodies(BodyVector* vec);

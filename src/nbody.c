@@ -8,7 +8,7 @@
 
 World world;
 
-Color get_random_color(void)
+static Color get_random_color(void)
 {
     return (Color) {
         .r = GetRandomValue(0, 255),
@@ -49,7 +49,7 @@ Vector2 get_random_circlepos(void)
     return v;
 }
 
-Body get_random_body(void)
+static Body get_random_body(void)
 {
     return (Body) {
         .acceleration = { 0, 0 },
