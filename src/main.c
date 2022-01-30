@@ -1,7 +1,8 @@
+#define GRAPHICS_API_OPENGL_33
+
 #include "body.h"
 #include "nbody.h"
 
-#define GRAPHICS_API_OPENGL_33
 #include "raylib.h"
 #include "raymath.h"
 
