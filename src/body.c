@@ -9,11 +9,10 @@ void UpdateBodies(BodyVector* vec)
 {
     // update attraction force on all bodies
     for (int i = 0; i < vec->count; i++) {
-        for (int j = 0; j < vec->count; j++) {
-            if (i == j) continue;
-
+        for (int j = 0; j < i; j++) {
             Vector2 force = Attract(&vec->bodies[i], &vec->bodies[j]);
             ApplyForce(&vec->bodies[i], force);
+            ApplyForce(&vec->bodies[j], Vector2Negate(force));
         }
     }
 

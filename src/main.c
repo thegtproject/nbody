@@ -12,8 +12,6 @@ const int initialBodyCount = 128;
 const int screenWidth  = 1200;
 const int screenHeight = 650;
 
-extern World world;
-
 static Color clear_color = { 25, 25, 25, 255 };
 static bool  paused      = true;
 static bool  showhelp    = true;

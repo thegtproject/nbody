@@ -10,6 +10,8 @@ typedef struct World {
     Camera2D   camera;
 } World;
 
+extern World world;
+
 void    add_random_body();
 void    add_random_body_fn(Vector2(*positionFunc)());
 
