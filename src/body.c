@@ -32,11 +32,19 @@ void UpdateBodies(BodyVector* vec)
 
 Vector2 Attract(Body* b1, Body* b2)
 {
+    // Vector2 force = Vector2Subtract(b2->position, b1->position);
+    // float distance = Vector2Length(force);
+    // distance = Clamp(distance, 1, 25);
+    // force = Vector2Normalize(force);
+    // float strength = (GravityConstant * b2->mass * b1->mass) / (distance * distance);
+
+    // a bit faster... id like to measure these two approaches more officially
     Vector2 force = Vector2Subtract(b2->position, b1->position);
-    float distance = Vector2Length(force);
-    distance = Clamp(distance, 1, 25);
+    float distance = Vector2LengthSqr(force);
+    distance = Clamp(distance, 1, 25*25);
     force = Vector2Normalize(force);
-    float strength = (GravityConstant * b2->mass * b1->mass) / (distance * distance);
+    float strength = (GravityConstant * b2->mass * b1->mass) / distance;
+
     force.x = force.x * strength;
     force.y = force.y * strength;
 
