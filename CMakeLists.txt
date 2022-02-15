@@ -13,7 +13,7 @@ add_executable(
     "src/body.c"
 )
 if(WIN32)
-    target_link_libraries(nbody raylib)
+    target_link_libraries(nbody ${RAYLIB_LIBRARIES})
 else()
     target_link_libraries(nbody raylib m)
 endif(WIN32)
