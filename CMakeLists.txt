@@ -4,7 +4,6 @@ project(nbody VERSION 0.1.0 LANGUAGES C)
 
 find_package(raylib CONFIG REQUIRED)
 include_directories(${RAYLIB_INCLUDE_DIRS})
-link_libraries(${RAYLIB_LIBRARIES})
 
 add_executable(
     nbody
@@ -13,3 +12,8 @@ add_executable(
     "src/nbody.c"
     "src/body.c"
 )
+if(WIN32)
+    target_link_libraries(nbody raylib)
+else()
+    target_link_libraries(nbody raylib m)
+endif(WIN32)
