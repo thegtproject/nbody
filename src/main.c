@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 
-static const int initialBodyCount = 512;
+static const int initialBodyCount = 1000;
 
 static const int screenWidth  = 1200;
 static const int screenHeight = 650;
