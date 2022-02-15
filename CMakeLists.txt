@@ -12,6 +12,7 @@ add_executable(
     "src/nbody.c"
     "src/body.c"
 )
+
 if(WIN32)
     target_link_libraries(nbody ${RAYLIB_LIBRARIES})
 else()
