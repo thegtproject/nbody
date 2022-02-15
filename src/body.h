@@ -20,3 +20,5 @@ typedef struct BodyVector {
 extern void AddBody(BodyVector* vec, Body p);
 extern void InitBodyVector(BodyVector* vec, int capacity);
 extern void UpdateBodies(BodyVector* vec);
+extern void setup_threads();
+extern void adjust_tasks();

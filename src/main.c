@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 
-static const int initialBodyCount = 1000;
+static const int initialBodyCount = 4000;
 
 static const int screenWidth  = 1200;
 static const int screenHeight = 650;
@@ -50,8 +50,10 @@ static void setup(void)
     InitBodyVector(&world.vec, initialBodyCount);
 
     for (int i = 0; i < initialBodyCount; i++) {
-        add_random_body();
+        add_random_body_fn(get_random_circlepos);
     }
+
+    setup_threads();
 }
 
 static void randomize_state(void)
@@ -78,6 +80,8 @@ static void randomize_state(void)
     for (int i = 0; i < bodyCount; i++) {
         add_random_body_fn(spawnPositionFn);
     }
+
+    adjust_tasks();
 }
 
 static void input(void)
@@ -96,8 +100,8 @@ static void input(void)
     if (IsKeyPressed(KEY_SPACE)) paused = !paused;
     if (IsKeyPressed(KEY_H)) showhelp = !showhelp;
 
-    if (IsKeyDown(KEY_Q)) world.vec.bodies[0].mass = Clamp(world.vec.bodies[0].mass - 3, 1, 200);
-    if (IsKeyDown(KEY_E)) world.vec.bodies[0].mass = Clamp(world.vec.bodies[0].mass + 3, 1, 200);
+    if (IsKeyDown(KEY_Q)) world.vec.bodies[0].mass = Clamp(world.vec.bodies[0].mass - 3, 1, 300);
+    if (IsKeyDown(KEY_E)) world.vec.bodies[0].mass = Clamp(world.vec.bodies[0].mass + 3, 1, 300);
 
     if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
         world.vec.bodies[0].position = GetScreenToWorld2D(GetMousePosition(), world.camera);
@@ -112,6 +116,7 @@ static void input(void)
 int main(int argc, char const *argv[])
 {
     setup();
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE | FLAG_MSAA_4X_HINT);
     InitWindow(screenWidth, screenHeight, "nbody sim");
     SetTargetFPS(60);
     while (!WindowShouldClose()) {
