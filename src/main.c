@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 
-static const int initialBodyCount = 4000;
+static const int initialBodyCount = 5000;
 
 static const int screenWidth  = 1200;
 static const int screenHeight = 650;
@@ -50,7 +50,7 @@ static void setup(void)
     InitBodyVector(&world.vec, initialBodyCount);
 
     for (int i = 0; i < initialBodyCount; i++) {
-        add_random_body_fn(get_random_circlepos);
+        add_random_body_fn(get_random_worldpos);
     }
 
     setup_threads();

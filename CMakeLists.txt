@@ -3,7 +3,6 @@ cmake_minimum_required(VERSION 3.16.0)
 project(nbody VERSION 0.1.0 LANGUAGES C)
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 
-find_package(pthreads REQUIRED)
 find_package(raylib CONFIG REQUIRED)
 
 include_directories(${RAYLIB_INCLUDE_DIRS})
@@ -17,4 +16,9 @@ add_executable(
     "src/threadpool.c"
 )
 
-target_link_libraries(nbody ${PThreads4W_LIBRARY} ${RAYLIB_LIBRARIES})
+if(WIN32)
+    find_package(pthreads REQUIRED)
+    target_link_libraries(nbody ${PThreads4W_LIBRARY} ${RAYLIB_LIBRARIES})
+else()
+    target_link_libraries(nbody pthread raylib m ${RAYLIB_LIBRARIES})
+endif(WIN32)
